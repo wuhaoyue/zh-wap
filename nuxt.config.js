@@ -26,8 +26,8 @@ module.exports = {
   css: [],
   plugins: [{ src: '@/plugins/axios', ssr: true }],
   buildModules: ['@nuxtjs/eslint-module'],
-  modules: ['@nuxtjs/axios'],
-  axios: {},
+  modules: ['@nuxtjs/axios', '@nuxtjs/style-resources'],
+  axios: { proxy: true },
   build: {
     extend(config, ctx) {
       if (ctx.isDev && ctx.isClient) {
