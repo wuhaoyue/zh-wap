@@ -31,6 +31,9 @@ export default {
   components: {
     Logo,
   },
+  mounted() {
+    console.log(process.env.__ENV)
+  },
 }
 </script>
 
