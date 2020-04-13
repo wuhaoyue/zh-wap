@@ -25,10 +25,28 @@ async function start() {
   app.use(nuxt.render)
 
   // Listen the server
-  app.listen(port, host)
+  app.listen(port)
   consola.ready({
-    message: `Server listening on http://${host}:${port}`,
+    message: `App running at: \n\n  - Local:   http://${host}:${port} \n  - Network:   http://${getIPAdress()}:${port}`,
     badge: true,
   })
 }
 start()
+
+// 获取本机IP
+function getIPAdress() {
+  const interfaces = require('os').networkInterfaces()
+  for (const devName in interfaces) {
+    const iface = interfaces[devName]
+    for (let i = 0; i < iface.length; i++) {
+      const alias = iface[i]
+      if (
+        alias.family === 'IPv4' &&
+        alias.address !== '127.0.0.1' &&
+        !alias.internal
+      ) {
+        return alias.address
+      }
+    }
+  }
+}

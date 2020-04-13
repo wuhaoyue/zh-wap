@@ -1,8 +1,14 @@
+const NODE_ENV = process.env.NODE_ENV
+
 module.exports = {
   mode: 'universal',
-  /*
-   ** Headers of the page
-   */
+  env: {
+    __ENV: process.env.NODE_ENV__ENV,
+  },
+  server: {
+    port: 3000, // default: 3000
+    host: 'localhost', // default: localhost,
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -16,44 +22,37 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-  /*
-   ** Customize the progress-bar color
-   */
   loading: { color: '#fff' },
-  /*
-   ** Global CSS
-   */
   css: [],
-  /*
-   ** Plugins to load before mounting the App
-   */
   plugins: [],
-  /*
-   ** Nuxt.js dev-modules
-   */
-  buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
-  ],
-  /*
-   ** Nuxt.js modules
-   */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-  ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
+  buildModules: ['@nuxtjs/eslint-module'],
+  modules: ['@nuxtjs/axios'],
   axios: {},
-  /*
-   ** Build configuration
-   */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {},
+    extend(config, ctx) {
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/,
+        })
+      }
+
+      if (ctx.isClient) {
+        if (NODE_ENV === 'development') {
+          config.devtool = 'cheap-module-eval-source-map'
+        } else {
+          config.devtool = 'hidden-source-map'
+        }
+      }
+    },
+  },
+  watchers: {
+    webpack: {
+      aggregateTimeout: 300,
+      poll: 1000,
+      ignored: /node_modules/,
+    },
   },
 }
