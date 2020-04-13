@@ -25,7 +25,8 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
-    "nuxt": "^2.12.2"
+    "nuxt": "^2.12.2",
+    "qs": "^6.9.3"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.2",
