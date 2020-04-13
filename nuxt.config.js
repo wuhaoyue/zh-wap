@@ -24,7 +24,7 @@ module.exports = {
   },
   loading: { color: '#fff' },
   css: [],
-  plugins: [],
+  plugins: [{ src: '@/plugins/axios', ssr: true }],
   buildModules: ['@nuxtjs/eslint-module'],
   modules: ['@nuxtjs/axios'],
   axios: {},
