@@ -21,10 +21,21 @@ module.exports = {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [
+      {
+        src: '/js/dgg-md-sdk.js',
+        ssr: false,
+        type: 'text/javascript',
+        charset: 'utf-8',
+      },
+    ],
   },
   loading: { color: '#fff' },
   css: [],
-  plugins: [{ src: '@/plugins/axios', ssr: true }],
+  plugins: [
+    { src: '@/plugins/axios', ssr: true },
+    { src: '@/plugins/router', ssr: false },
+  ],
   buildModules: ['@nuxtjs/eslint-module'],
   modules: ['@nuxtjs/axios', '@nuxtjs/style-resources'],
   axios: { proxy: true },

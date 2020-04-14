@@ -4,6 +4,9 @@ module.exports = {
     browser: true,
     node: true,
   },
+  globals: {
+    dggSensors: true,
+  },
   parserOptions: {
     parser: 'babel-eslint',
   },
