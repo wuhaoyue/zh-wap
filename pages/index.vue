@@ -21,15 +21,18 @@
         </a>
       </div>
       <div class="add">好大</div>
+      <a-button type="primary">Primary</a-button>
     </div>
   </div>
 </template>
 
 <script>
+import { Button } from 'ant-design-vue'
 import Logo from '~/components/Logo.vue'
 
 export default {
   components: {
+    [Button.name]: Button,
     Logo,
   },
   mounted() {

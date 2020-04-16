@@ -31,18 +31,25 @@ module.exports = {
     ],
   },
   loading: { color: '#fff' },
-  css: [],
+  css: ['@/assets/less/ant-ui.less'],
   plugins: [
     { src: '@/plugins/axios', ssr: true },
     { src: '@/plugins/router', ssr: false },
+    { src: '@/plugins/ant-ui', ssr: true },
   ],
   buildModules: ['@nuxtjs/eslint-module'],
   modules: ['@nuxtjs/axios', '@nuxtjs/style-resources', '@nuxtjs/proxy'],
   styleResources: {
-    less: '@/assets/less/theme-basic.less',
+    less: ['@/assets/less/theme-basic.less'],
   },
   axios: { proxy: true },
   build: {
+    transpile: [/ant-design-vue/],
+    loaders: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
     extend(config, ctx) {
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
