@@ -20,6 +20,7 @@
           GitHub
         </a>
       </div>
+      <div class="add">好大</div>
     </div>
   </div>
 </template>
@@ -37,7 +38,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -67,5 +68,8 @@ export default {
 
 .links {
   padding-top: 15px;
+}
+.add {
+  color: @primary-color;
 }
 </style>

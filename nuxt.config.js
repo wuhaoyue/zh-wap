@@ -37,7 +37,10 @@ module.exports = {
     { src: '@/plugins/router', ssr: false },
   ],
   buildModules: ['@nuxtjs/eslint-module'],
-  modules: ['@nuxtjs/axios', '@nuxtjs/style-resources'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/style-resources', '@nuxtjs/proxy'],
+  styleResources: {
+    less: '@/assets/less/theme-basic.less',
+  },
   axios: { proxy: true },
   build: {
     extend(config, ctx) {
