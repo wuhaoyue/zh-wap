@@ -45,9 +45,33 @@ module.exports = {
   axios: { proxy: true },
   build: {
     transpile: [/ant-design-vue/],
+    extractCSS: process.env.NODE_ENV === 'production',
     loaders: {
       less: {
         javascriptEnabled: true,
+      },
+    },
+    babel: {
+      plugins: [
+        [
+          'import',
+          {
+            libraryName: 'ant-design-vue',
+            libraryDirectory: 'es',
+          },
+        ],
+      ],
+    },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.(css|vue|less)$/,
+            chunks: 'all',
+            enforce: true,
+          },
+        },
       },
     },
     extend(config, ctx) {
