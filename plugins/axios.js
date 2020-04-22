@@ -1,11 +1,11 @@
 import qs from 'qs'
 const BASE = require('~/config/index.js')
-const ENV = process.env.__ENV
+const DGG_SERVER_ENV = process.env.DGG_SERVER_ENV
 
 export default function ({ $axios, redirect }) {
   // 设置基本URL
   if (process.server) {
-    $axios.defaults.baseURL = BASE[ENV].baseURL
+    $axios.defaults.baseURL = BASE[DGG_SERVER_ENV].baseURL
   } else {
     $axios.defaults.baseURL = '/api'
   }

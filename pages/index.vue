@@ -36,7 +36,7 @@ export default {
     Logo,
   },
   mounted() {
-    console.log(process.env.__ENV)
+    console.log(process.env.DGG_SERVER_ENV)
   },
 }
 </script>

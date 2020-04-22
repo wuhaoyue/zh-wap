@@ -3,7 +3,7 @@ const NODE_ENV = process.env.NODE_ENV
 module.exports = {
   mode: 'universal',
   env: {
-    __ENV: process.env.NODE_ENV__ENV,
+    DGG_SERVER_ENV: process.env.DGG_SERVER_ENV,
   },
   server: {
     port: 3000, // default: 3000
