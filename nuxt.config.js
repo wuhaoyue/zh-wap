@@ -1,4 +1,17 @@
 const NODE_ENV = process.env.NODE_ENV
+const bablePlugin = [
+  [
+    'import',
+    {
+      libraryName: 'ant-design-vue',
+      libraryDirectory: 'es',
+    },
+  ],
+]
+
+if (NODE_ENV === 'production') {
+  bablePlugin.push('transform-remove-console')
+}
 
 module.exports = {
   mode: 'universal',
@@ -52,15 +65,7 @@ module.exports = {
       },
     },
     babel: {
-      plugins: [
-        [
-          'import',
-          {
-            libraryName: 'ant-design-vue',
-            libraryDirectory: 'es',
-          },
-        ],
-      ],
+      plugins: bablePlugin,
     },
     optimization: {
       splitChunks: {
