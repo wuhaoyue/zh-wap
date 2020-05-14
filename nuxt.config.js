@@ -36,7 +36,13 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
       {
-        src: '/js/dgg-md-sdk.js',
+        src: '/js/dgg-md-sdk-conf.js',
+        ssr: false,
+        type: 'text/javascript',
+        charset: 'utf-8',
+      },
+      {
+        src: '/js/dgg-md-sdk.min.js',
         ssr: false,
         type: 'text/javascript',
         charset: 'utf-8',
