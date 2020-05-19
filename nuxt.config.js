@@ -55,6 +55,7 @@ module.exports = {
     { src: '@/plugins/axios', ssr: true },
     { src: '@/plugins/router', ssr: false },
     { src: '@/plugins/ant-ui', ssr: true },
+    { src: '@/plugins/dgg-md', ssr: false },
   ],
   buildModules: ['@nuxtjs/eslint-module'],
   modules: ['@nuxtjs/axios', '@nuxtjs/style-resources', '@nuxtjs/proxy'],

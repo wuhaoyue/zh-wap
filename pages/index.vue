@@ -21,6 +21,18 @@
         </a>
       </div>
       <div class="add">好大</div>
+      <!-- 自定义事件 -->
+      <div v-md:p_search data-keyword="测试搜索" class="test">
+        <span>自定义事件</span>
+      </div>
+      <!-- 热力图点击事件 -->
+      <div v-md-map class="test">
+        <span>热力图点击事件</span>
+      </div>
+      <!-- 自定义事件 和 热力图点击事件 -->
+      <div v-md:p_search v-md-map data-keyword="测试搜索" class="test">
+        <span>自定义事件 和 热力图点击事件</span>
+      </div>
       <a-button type="primary">Primary</a-button>
     </div>
   </div>
@@ -74,5 +86,10 @@ export default {
 }
 .add {
   color: @primary-color;
+}
+.test {
+  font-size: 18px;
+  margin-bottom: 16px;
+  cursor: pointer;
 }
 </style>
