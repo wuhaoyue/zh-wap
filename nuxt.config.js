@@ -86,6 +86,19 @@ module.exports = {
         },
       },
     },
+    productionGzip: true,
+    productionGzipExtensions: ['js', 'css', 'svg'],
+    filenames: {
+      // css 和 js  img 打包时指定文件夹
+      app: ({ isDev }) => (isDev ? '[name].js' : '[name].js'),
+      chunk: ({ isDev }) => (isDev ? '[name].js' : '[name].js'),
+      css: ({ isDev }) => (isDev ? '[name].css' : '[name].css'),
+      img: ({ isDev }) => (isDev ? '[path][name].[ext]' : '[path][name].[ext]'),
+      font: ({ isDev }) =>
+        isDev ? '[path][name].[ext]' : '[path][name].[ext]',
+      video: ({ isDev }) =>
+        isDev ? '[path][name].[ext]' : '[path][name].[ext]',
+    },
     extend(config, ctx) {
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
@@ -104,6 +117,9 @@ module.exports = {
         }
       }
     },
+  },
+  render: {
+    resourceHints: false,
   },
   watchers: {
     webpack: {
