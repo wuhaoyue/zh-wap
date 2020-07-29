@@ -1,3 +1,4 @@
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const NODE_ENV = process.env.NODE_ENV
 const bablePlugin = [
   [
@@ -39,12 +40,14 @@ module.exports = {
         src: '/js/dgg-md-sdk-conf.js',
         ssr: false,
         type: 'text/javascript',
+        defer: 'defer',
         charset: 'utf-8',
       },
       {
         src: '/js/dgg-md-sdk.min.js',
         ssr: false,
         type: 'text/javascript',
+        defer: 'defer',
         charset: 'utf-8',
       },
     ],
@@ -87,6 +90,24 @@ module.exports = {
       },
     },
     productionGzip: true,
+    productionSourceMap: false,
+    configureWebpack: (config) => {
+      if (NODE_ENV === 'production') {
+        config.plugins.push(
+          new CompressionWebpackPlugin({
+            algorithm: 'gzip',
+            test: /\.(js|css|html)$/,
+            threshold: 10240,
+            minRatio: 0.8,
+          })
+        )
+        config.externals = {
+          vue: 'Vue',
+          'vue-router': 'VueRouter',
+          axios: 'axios',
+        }
+      }
+    },
     productionGzipExtensions: ['js', 'css', 'svg'],
     filenames: {
       // css 和 js  img 打包时指定文件夹
